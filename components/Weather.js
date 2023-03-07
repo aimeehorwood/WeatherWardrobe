@@ -55,13 +55,13 @@ export default function Weather() {
       <View style={styles.overlay}>
         <View style={styles.cardContainer}>
           <View style={styles.card}>
-            <Text style={styles.cardText}>{locationName}</Text>
+            <Text style={styles.cardText}> Location: {locationName}</Text>
           </View>
           <View style={styles.card}>
-            <Text style={styles.cardText}>{temperature}°C</Text>
+            <Text style={styles.cardText}> Temperature: {temperature}°C</Text>
           </View>
           <View style={styles.card}>
-            <Text style={styles.cardText}>{weatherDescription}</Text>
+            <Text style={styles.cardText}>Description: {weatherDescription}</Text>
           </View>
           <View style={styles.card}>
             <Text style={styles.cardText}>{suggestion}</Text>
@@ -83,26 +83,23 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   cardContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: 'column',
     alignItems: 'center',
-    flexWrap: 'wrap',
     marginTop: 200,
-    paddingHorizontal: 20,
   },
   card: {
     backgroundColor: 'transparent',
     borderRadius: 10,
     borderWidth: 2,
     borderColor: 'white',
-    padding: 10,
-    marginVertical: 5,
-    marginTop: 30,
+    padding: 20,
+    marginVertical: 10,
+    width: '100%',
+    height: '18%',
+
     justifyContent: 'space-around',
     alignItems: 'center',
     elevation: 3,
-    width: '45%',
-    height: '30%',
   },
   cardText: {
     textAlign: 'center',
@@ -113,6 +110,5 @@ const styles = StyleSheet.create({
   loading: {
     fontSize: 18,
     textAlign: 'center',
-  },
+  }
 });
-
