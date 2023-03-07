@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, StyleSheet, ImageBackground } from 'react-native';
 import * as Location from 'expo-location';
+import { stringifyValueWithProperty } from 'react-native-web/dist/cjs/exports/StyleSheet/compiler';
 
 const API_KEY = '65ef5802c8e0f666c9026a3a439f2330';
 
@@ -34,7 +35,8 @@ export default function Weather() {
   }
 
   const temperature = Math.round(weatherData.main.temp - 273.15);
-  const weatherDescription = weatherData.weather[0].description;
+  const weatherDescription = weatherData.weather[0].description
+
   let suggestion = '';
   const locationName = weatherData.name;
 
@@ -49,11 +51,68 @@ export default function Weather() {
   }
 
   return (
-    <View>
-      <Text>Location: {locationName}</Text>
-      <Text>Temperature: {temperature}°C</Text>
-      <Text>Weather: {weatherDescription}</Text>
-      <Text>{suggestion}</Text>
-    </View>
+    <ImageBackground source={require('../assets/header-background.jpg')} style={styles.background}>
+      <View style={styles.overlay}>
+        <View style={styles.cardContainer}>
+          <View style={styles.card}>
+            <Text style={styles.cardText}>{locationName}</Text>
+          </View>
+          <View style={styles.card}>
+            <Text style={styles.cardText}>{temperature}°C</Text>
+          </View>
+          <View style={styles.card}>
+            <Text style={styles.cardText}>{weatherDescription}</Text>
+          </View>
+          <View style={styles.card}>
+            <Text style={styles.cardText}>{suggestion}</Text>
+          </View>
+        </View>
+      </View>
+    </ImageBackground>
   );
 }
+
+const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+    resizeMode: 'cover',
+  },
+  overlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+    padding: 10,
+  },
+  cardContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    marginTop: 200,
+    paddingHorizontal: 20,
+  },
+  card: {
+    backgroundColor: 'transparent',
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: 'white',
+    padding: 10,
+    marginVertical: 5,
+    marginTop: 30,
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    elevation: 3,
+    width: '45%',
+    height: '30%',
+  },
+  cardText: {
+    textAlign: 'center',
+    fontSize: 20,
+    marginVertical: 5,
+    color: 'white',
+  },
+  loading: {
+    fontSize: 18,
+    textAlign: 'center',
+  },
+});
+
