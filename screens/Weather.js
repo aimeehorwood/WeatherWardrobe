@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, ImageBackground } from 'react-native';
 import * as Location from 'expo-location';
-import { stringifyValueWithProperty } from 'react-native-web/dist/cjs/exports/StyleSheet/compiler';
 
 const API_KEY = '65ef5802c8e0f666c9026a3a439f2330';
 
@@ -42,7 +41,7 @@ export default function Weather() {
 
   if (weatherDescription.includes('sunny') || weatherDescription.includes('clear')) {
     suggestion = 'Don\'t forget your sunglasses!';
-  } else if (temperature < 10) {
+  } else if (temperature < 4) {
     suggestion = 'It\'s cold outside, wear some earmuffs!';
   } else if (weatherDescription.includes('rain') || weatherDescription.includes('thunderstorm')) {
     suggestion = 'Bring an umbrella with you!';
@@ -51,52 +50,58 @@ export default function Weather() {
   }
 
   return (
-    <ImageBackground source={require('../assets/header-background.jpg')} style={styles.background}>
       <View style={styles.overlay}>
         <View style={styles.cardContainer}>
           <View style={styles.card}>
-            <Text style={styles.cardText}> Location: {locationName}</Text>
+            <Text style={styles.cardText}> {locationName}</Text>
           </View>
           <View style={styles.card}>
-            <Text style={styles.cardText}> Temperature: {temperature}°C</Text>
+            <Text style={styles.cardText}>{temperature}°C</Text>
           </View>
           <View style={styles.card}>
-            <Text style={styles.cardText}>Description: {weatherDescription}</Text>
+            <Text style={styles.cardText}>{weatherDescription}</Text>
           </View>
-          <View style={styles.card}>
+          <View style={styles.recommendation}>
             <Text style={styles.cardText}>{suggestion}</Text>
           </View>
         </View>
       </View>
-    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-    resizeMode: 'cover',
-  },
+
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+    backgroundColor: 'white',
     padding: 10,
   },
   cardContainer: {
     flexDirection: 'column',
     alignItems: 'center',
-    marginTop: 200,
+    marginTop: 30,
   },
   card: {
-    backgroundColor: 'transparent',
+    backgroundColor: '#68f3ce',
     borderRadius: 10,
     borderWidth: 2,
     borderColor: 'white',
-    padding: 20,
     marginVertical: 10,
-    width: '100%',
+    width: '90%',
     height: '18%',
 
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    elevation: 3,
+  },
+  recommendation: {
+    backgroundColor: '#35a7ff',
+    borderRadius: 400,
+    borderWidth: 2,
+    borderColor: 'white',
+    marginVertical: 30,
+    width: '90%',
+    height: '18%',
     justifyContent: 'space-around',
     alignItems: 'center',
     elevation: 3,
@@ -105,10 +110,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 20,
     marginVertical: 5,
-    color: 'white',
+    color: 'black',
   },
-  loading: {
-    fontSize: 18,
-    textAlign: 'center',
-  }
 });

@@ -1,16 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, ImageBackground } from 'react-native';
-import Weather from './components/Weather.js';
+import Weather from './screens/Weather.js';
+import Header from './components/header.js';
 
 
-const img = require('./assets/header-background.jpg')
 export default function App() {
   return (
     <View style={styles.container}>
-      <ImageBackground source={img} style ={styles.backgroundImage} >
+      <Header/>
       <Weather />
       <StatusBar style="auto" />
-      </ImageBackground>
       </View>
   );
 }
@@ -18,10 +17,5 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  backgroundImage:{
-    flex: 1,
-    resizeMode:"cover",
-    justifyContent: 'center',
   },
 });
