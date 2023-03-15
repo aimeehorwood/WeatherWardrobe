@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, ImageBackground } from 'react-native';
 import * as Location from 'expo-location';
 
-const API_KEY = '65ef5802c8e0f666c9026a3a439f2330';
-
 export default function Weather() {
   const [location, setLocation] = useState(null);
   const [weatherData, setWeatherData] = useState(null);
@@ -23,7 +21,7 @@ export default function Weather() {
 
   useEffect(() => {
     if (location) {
-      fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=${API_KEY}`)
+      fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=65ef5802c8e0f666c9026a3a439f2330`)
         .then(response => response.json())
         .then(data => setWeatherData(data));
     }
@@ -35,7 +33,7 @@ export default function Weather() {
 
   const temperature = Math.round(weatherData.main.temp - 273.15);
   const weatherDescription = weatherData.weather[0].description
-
+  
   let suggestion = '';
   const locationName = weatherData.name;
 
