@@ -1,19 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, ImageBackground } from 'react-native';
-import Weather from './screens/Weather.js';
+import { StyleSheet, View} from 'react-native';
 import Header from './components/header.js';
 import {NavigationContainer} from '@react-navigation/native'
+import AppNavigator from './appNavigator.js';
 
 
 export default function App() {
   return (
     <NavigationContainer>
-    <View style={styles.container}>
-      <Header/>
-      <Weather />
-      <StatusBar style="auto" />
+      <View style={styles.container}>
+        <Header />
+        <AppNavigator />
+        <StatusBar style="auto" />
       </View>
-      </NavigationContainer>
+    </NavigationContainer>
   );
 }
 
